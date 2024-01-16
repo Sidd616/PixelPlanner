@@ -1,15 +1,15 @@
 import { Component } from '@angular/core';
 import { RouterLink, RouterOutlet } from '@angular/router';
 
+
 @Component({
-  selector: 'app-root',
+  selector: 'app-home',
   standalone: true,
-  imports:[RouterLink, RouterOutlet],
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'] // Use 'styleUrls' instead of 'styleUrl'
+  imports: [RouterOutlet, RouterLink],
+  templateUrl: './home.component.html',
+  styleUrl: './home.component.css'
 })
-export class AppComponent {
-  title = 'PixelParagon';
+export class HomeComponent {
   imagePath1 = './assets/image1.jpg';
   imagePath2 = './assets/image2.png';
   imagePath3 = './assets/image3.jpg';

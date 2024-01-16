@@ -1,0 +1,33 @@
+/* form-component.component.css */
+:host {
+      display: block;
+      max-width: 800px;
+      margin: auto;
+      padding: 2rem;
+    }
+    
+    .form-input {
+      margin-top: 1rem;
+      padding: 0.5rem;
+      display: block;
+      width: 40%;
+      color: black;
+      border: 1px solid #ccc;
+      border-radius: 0.25rem;
+      box-shadow: 0 2px 2px rgba(0, 0, 0, 0.5);
+      outline: none;
+      transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    }
+    
+    .form-input:focus {
+      border-color: #3490dc;
+      box-shadow: 0 0 0 3px rgba(52, 144, 220, 0.25);
+    }
+    
+    button {
+      background-color: #3490dc;
+      color: #fff;
+      padding: 0.5rem 1rem;
+      border-radius: 0.25rem;
+    }
+    

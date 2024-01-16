@@ -1,0 +1,35 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="mb-4">
+    <label class="block text-lg font-medium">Tell us your Property type(House/Bungalow/Corporate)</label>
+    <input formControlName="Tell us your Property type(House/Bungalow/Corporate)" type="text" class="form-input"/>
+  </div>
+  <div class="mb-4">
+    <label class="block text-lg font-medium">Length of your PLOT</label>
+    <input formControlName="Length of your PLOT" type="text" class="form-input"/>
+  </div>
+
+<div class="mb-4">
+    <label class="block text-lg font-medium">Breadth of your PLOT</label>
+    <input formControlName="Breadth of your PLOT" type="text" class="form-input"/>
+  </div>
+
+<div class="mb-4">
+    <label class="block text-lg font-medium">Do you have any Direction preference?</label>
+    <input formControlName="Do you have any Direction preference?" type="text" class="form-input"/>
+  </div>
+
+<div class="mb-4">
+    <label class="block text-lg font-medium">How many Bedrooms do you want?</label>
+    <input formControlName="How many Bedrooms do you want?" type="text" class="form-input"/>
+  </div>
+
+<div class="mb-4">
+    <label class="block text-lg font-medium">Medium sized OR Large sized</label>
+    <input formControlName="Medium sized OR Large sized" type="text" class="form-input"/>
+  </div>
+  
+
+  <!-- Add more form controls as needed -->
+
+  <button type="submit" class="bg-blue-500 text-white p-2 rounded-md">Submit</button>
+</form>
