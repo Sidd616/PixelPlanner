@@ -1,1 +1,6 @@
 /* Add styling for the active link using the nav-link class */
+/* Add this to your global styles or component-specific styles */
+ul li a.active {
+      color: skyblue;
+    }
+    

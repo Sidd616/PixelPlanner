@@ -1,3 +1,4 @@
+<main>
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
   <div class="mb-4">
     <label class="block text-lg font-medium">Tell us your Property type(House/Bungalow/Corporate)</label>
@@ -33,3 +34,96 @@
 
   <button type="submit" class="bg-blue-500 text-white p-2 rounded-md">Submit</button>
 </form>
+<div class="max-w-md mx-auto text-black bg-white p-8 rounded shadow-md">
+  <form>
+      <!-- Question 1: What are you looking for? -->
+      <div class="mb-4">
+          <label class="block text-gray-700 text-sm font-bold mb-2" for="propertyType">What are you looking for?</label>
+          <select class="w-full border p-2 rounded" id="propertyType" name="propertyType">
+              <option value="house">House</option>
+              <option value="bungalow">Bungalow</option>
+              <option value="corporate">Corporate</option>
+          </select>
+      </div>
+
+      <!-- Question 2: How many sides does your PLOT has? -->
+      <div class="mb-4">
+          <label class="block text-gray-700 text-sm font-bold mb-2" for="plotSides">How many sides does your PLOT has?</label>
+          <input class="w-full border p-2 rounded" type="number" id="plotSides" name="plotSides">
+      </div>
+
+      <!-- Question 3: Choose your scale type... -->
+      <div class="mb-4">
+          <label class="block text-gray-700 text-sm font-bold mb-2" for="scaleType">Choose your scale type...</label>
+          <select class="w-full border p-2 rounded" id="scaleType" name="scaleType">
+              <option value="cm">cm</option>
+              <option value="in">in</option>
+              <option value="ft">ft</option>
+              <option value="mt">mt</option>
+          </select>
+      </div>
+
+      <!-- Question 4: Enter the length of sides separated by comma. -->
+      <div class="mb-4">
+          <label class="block text-gray-700 text-sm font-bold mb-2" for="sideLengths">Enter the length of sides separated by comma.</label>
+          <input class="w-full border p-2 rounded" type="text" id="sideLengths" name="sideLengths">
+      </div>
+
+      <!-- Question 5: Do you wish to cover the entire PLOT? -->
+      <div class="mb-4">
+          <label class="block text-gray-700 text-sm font-bold mb-2">Do you wish to cover the entire PLOT?</label>
+          <div class="flex items-center">
+              <input type="radio" id="coverYes" name="coverPlot" value="yes" class="mr-2">
+              <label for="coverYes">Yes</label>
+          </div>
+          <div class="flex items-center">
+              <input type="radio" id="coverNo" name="coverPlot" value="no" class="mr-2">
+              <label for="coverNo">No</label>
+          </div>
+      </div>
+
+      <!-- Question 6: Things you wish to include -->
+      <div class="mb-4">
+          <label class="block text-gray-700 text-sm font-bold mb-2">Things you wish to include</label>
+          <div class="grid grid-cols-2 gap-4">
+              <!-- Replace 'quantity' with an appropriate id if needed -->
+              <input type="checkbox" id="meetingHall" name="meetingHall" class="mr-2">
+              <label for="meetingHall">Meeting hall</label>
+              
+              <!-- Add similar lines for other options -->
+          </div>
+      </div>
+
+      <!-- Question 7: How spacious do you want? -->
+      <div class="mb-4">
+          <label class="block text-gray-700 text-sm font-bold mb-2">How spacious do you want?</label>
+          <div class="flex items-center">
+              <input type="radio" id="regular" name="spaciousness" value="regular" class="mr-2">
+              <label for="regular">Regular</label>
+          </div>
+          <div class="flex items-center">
+              <input type="radio" id="large" name="spaciousness" value="large" class="mr-2">
+              <label for="large">Large</label>
+          </div>
+      </div>
+
+      <!-- Question 8: Do you want to specify direction of the entrance? -->
+      <div class="mb-4">
+          <label class="block text-gray-700 text-sm font-bold mb-2">Do you want to specify direction of the entrance?</label>
+          <div class="flex items-center">
+              <input type="radio" id="directionYes" name="entranceDirection" value="yes" class="mr-2">
+              <label for="directionYes">Yes</label>
+          </div>
+          <div class="flex items-center">
+              <input type="radio" id="directionNo" name="entranceDirection" value="no" class="mr-2">
+              <label for="directionNo">No</label>
+          </div>
+          <!-- If 'Yes', include an input box for direction -->
+          <input type="text" id="entranceDirectionInput" name="entranceDirectionInput" class="w-full border p-2 rounded mt-2" placeholder="Enter direction">
+      </div>
+
+      <!-- Submit button -->
+      <button type="submit" class="bg-blue-500 text-white p-2 rounded">Submit</button>
+  </form>
+</div>
+</main>
