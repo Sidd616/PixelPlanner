@@ -25,9 +25,18 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "node_modules/leaflet/dist/leaflet.css",
+              "src/styles.css",
+              "https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css"
             ],
-            "scripts": [],
+            "scripts": [
+              "node_modules/leaflet/dist/leaflet.js",
+              "https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.js",
+              "https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js",
+              "https://unpkg.com/leaflet.locatecontrol/dist/L.Control.Locate.min.js",
+              "https://unpkg.com/leaflet@1.7.1/dist/leaflet.js",
+              "https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.js"
+            ],
             "server": "src/main.server.ts",
             "prerender": true,
             "ssr": {
@@ -60,6 +69,9 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "host": "0.0.0.0"
+          },
           "configurations": {
             "production": {
               "buildTarget": "PixelParagon:build:production"
@@ -89,9 +101,18 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "node_modules/leaflet/dist/leaflet.css",
+              "src/styles.css",
+              "https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/leaflet/dist/leaflet.js",
+              "https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.js",
+              "https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js",
+              "https://unpkg.com/leaflet.locatecontrol/dist/L.Control.Locate.min.js",
+              "https://unpkg.com/leaflet@1.7.1/dist/leaflet.js",
+              "https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.js"
+            ]
           }
         }
       }
