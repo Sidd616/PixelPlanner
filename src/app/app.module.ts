@@ -21,16 +21,36 @@
 //   bootstrap: [],
 // })
 // export class AppModule { }
-// app.module.ts
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { RouterModule } from '@angular/router';
-import { GetstartedModule } from './getstarted/getstarted.module';
-import { AppComponent } from './app.component';
 
-@NgModule({
-  declarations: [AppComponent],
-  imports: [BrowserModule, GetstartedModule, RouterModule.forRoot([])], // Add RouterModule.forRoot([]) for routing
-  bootstrap: [AppComponent],
-})
-export class AppModule {}
+
+
+// // app.module.ts
+// import { NgModule } from '@angular/core';
+// import { BrowserModule } from '@angular/platform-browser';
+// import { RouterModule } from '@angular/router';
+// import { GetstartedModule } from './getstarted/getstarted.module';
+// import { AppComponent } from './app.component';
+
+// @NgModule({
+//   declarations: [AppComponent],
+//   imports: [BrowserModule, GetstartedModule, RouterModule.forRoot([])], // Add RouterModule.forRoot([]) for routing
+//   bootstrap: [AppComponent],
+// })
+// export class AppModule {}
+
+// import { HttpClientModule } from '@angular/common/http';
+
+// @NgModule({
+//   imports: [
+//     // other modules
+//     HttpClientModule,
+//   ],
+//   declarations: [
+//     // your components and directives
+//   ],
+//   providers: [
+//     // your services
+//   ],
+//   bootstrap: [AppComponent],
+// })
+// export class AppModule {}

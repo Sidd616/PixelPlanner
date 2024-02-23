@@ -1,33 +1,9 @@
-// import { Component, OnInit } from '@angular/core';
-// import { FlaskBackendService } from '../services/flask-backend.service';
-
-// @Component({
-//   selector: 'app-map-page',
-//   templateUrl: './map-page.component.html',
-//   styleUrls: ['./map-page.component.css']
-// })
-// export class MapPageComponent implements OnInit {
-
-//   constructor(private flaskBackendService: FlaskBackendService) { }
-
-//   ngOnInit(): void {
-//     // Leaflet map initialization code
-//     // Add any additional Angular component logic here
-//   }
-
-//   onEnterButtonClick(): void {
-//     // Call the Flask backend service
-//     // Example: this.flaskBackendService.generateGrid(shapes).subscribe(response => console.log(response));
-//   }
-// }
-
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, Inject, PLATFORM_ID, NgZone } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { FlaskBackendService } from '../services/flask-backend.service';
-import * as L from 'leaflet';
 import { GeoJSON } from './geojson.model';
-import * as M from 'leaflet-control-geocoder'
-// import 'leaflet-routing-machine';
 
+declare const L: any;
 
 @Component({
   selector: 'app-map-page',
@@ -36,108 +12,92 @@ import * as M from 'leaflet-control-geocoder'
 })
 export class MapPageComponent implements OnInit, AfterViewInit {
 
-  loadScriptz() {
-    const dynamicScripts = [
-      "https://cdnjs.cloudflare.cbom/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.js",
-      "https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js",
-      "https://unpkg.com/leaflet.locatecontrol/dist/L.Control.Locate.min.js",
-      "https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
-    ];
-    for (let i = 0; i < dynamicScripts.length; i++) {
-      const node = document.createElement('script');
-      node.src = dynamicScripts[i];
-      node.type = 'text/javascript';
-      node.async = false;
-      node.charset = 'utf-8';
-      document.getElementsByTagName('head')[0].appendChild(node);
+  constructor(
+    private flaskBackendService: FlaskBackendService,
+    private ngZone: NgZone,
+    @Inject(PLATFORM_ID) private platformId: Object
+  ) { }
+
+  private async loadScripts() {
+    if (isPlatformBrowser(this.platformId)) {
+      try {
+        const leaflet = await import('leaflet');
+        const leafletDraw = await import('leaflet-draw');
+        const geocoder = await import('leaflet-control-geocoder');
+
+        // Import types dynamically for leaflet.locatecontrol
+        const locateControlTypes = await import('leaflet.locatecontrol');
+        const locateControl = await import('leaflet.locatecontrol');
+
+        // Leaflet map initialization code
+        this.ngZone.runOutsideAngular(() => {
+          var map = leaflet.map('map').setView([51.505, -0.09], 13);
+          leaflet.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+          }).addTo(map);
+
+          // Add search control
+          L.Control.geocoder().addTo(map);
+
+          // Add locate control
+          L.control.locate().addTo(map);
+
+          var drawnItems = new leaflet.FeatureGroup();
+          map.addLayer(drawnItems);
+          var drawControl = new L.Control.Draw({
+            draw: {
+              polyline: false,
+              polygon: true,
+              rectangle: false,
+              circle: false,
+              marker: false
+            },
+            edit: {
+              featureGroup: drawnItems
+            }
+          });
+          map.addControl(drawControl);
+
+          map.on('draw:created', (e: any) => {
+            this.ngZone.run(() => {
+              // Clear existing layers
+              drawnItems.clearLayers();
+
+              var layer = e.layer;
+              drawnItems.addLayer(layer);
+            });
+          });
+        });
+      } catch (error) {
+        console.error('Error loading Leaflet scripts:', error);
+      }
     }
   }
 
-  constructor(private flaskBackendService: FlaskBackendService) {
-    this.loadScriptz();
-   }
-
   ngOnInit(): void {
-    // Leaflet map initialization code
     this.loadScripts();
-    // this.initializeMap();
   }
-  
 
   ngAfterViewInit(): void {
-    // Leaflet map initialization code
-    var map = L.map('map').setView([51.505, -0.09], 13);
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-    }).addTo(map);
-
-    
-    L.Control.geocoder().addTo(map);
-
-    // Add locate control
-    L.control.locate().addTo(map);
-
-    var drawnItems = new L.FeatureGroup();
-    map.addLayer(drawnItems);
-    var drawControl = new L.Control.Draw({
-      draw: {
-        polyline: false,
-        polygon: true,
-        rectangle: false,
-        circle: false,
-        marker: false
-      },
-      edit: {
-        featureGroup: drawnItems
-      }
-    });
-    map.addControl(drawControl);
-
-    map.on('draw:created', function (e) {
-      // Clear existing layers
-      drawnItems.clearLayers();
-
-      var layer = e.layer;
-      drawnItems.addLayer(layer);
-    });
-
-    // Additional logic can go here...
+    // Additional initialization code if needed
+    if (isPlatformBrowser(this.platformId)) {
+      // Additional code if needed
+    }
   }
-
-  private loadScripts() {
-    // Add your script loading logic here
-    const leafletScript = document.createElement('script');
-    leafletScript.src = 'node_modules/leaflet/dist/leaflet.js'; // Adjust the path accordingly
-    document.body.appendChild(leafletScript);
-  
-    const drawScript = document.createElement('script');
-    drawScript.src = 'https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.js';
-    document.body.appendChild(drawScript);
-  
-    const geocoderScript = document.createElement('script');
-    geocoderScript.src = 'https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js';
-    document.body.appendChild(geocoderScript);
-  
-    const locateScript = document.createElement('script');
-    locateScript.src = 'https://unpkg.com/leaflet.locatecontrol/dist/L.Control.Locate.min.js';
-    document.body.appendChild(locateScript);
-  }
-  
 
   onEnterButtonClick(): void {
     // Call the Flask backend service
-    const shapes = this.getShapes(); // Implement a method to get shapes from the map
+    const shapes = this.getShapes();
     this.flaskBackendService.generateGrid(shapes).subscribe(response => {
       console.log(response);
       // Handle the response as needed
     });
-
   }
 
   private getShapes(): GeoJSON[] {
     // Extract shapes from the Leaflet map
     const shapes: GeoJSON[] = [];
-  
+
     // Example GeoJSON data
     const geoJSONData = {
       type: "FeatureCollection",
@@ -191,12 +151,12 @@ export class MapPageComponent implements OnInit, AfterViewInit {
         },
       ],
     };
-  
-    // Iterate through features and push them into the shapes array
-    geoJSONData.features.forEach((feature) => {
+
+    // Iterate through features
+    geoJSONData.features.forEach((feature: GeoJSON) => {
       shapes.push(feature);
     });
-  
+
     return shapes;
   }
 }
