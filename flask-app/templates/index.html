@@ -20,6 +20,7 @@
 <body>
     <div id="map"></div>
     <button id="enterButton">Enter</button>
+    <button id="redirectToAngularButton">Redirect to Angular</button>
 
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.js"></script>
@@ -69,6 +70,8 @@
                     shapes.push(layer.toGeoJSON());
                 });
 
+                
+
                 // Send data to the backend
                 fetch('/generate_grid', {
                     method: 'POST',
@@ -84,6 +87,10 @@
                 .catch(error => {
                     console.error('Error:', error);
                 });
+            });
+            document.getElementById('redirectToAngularButton').addEventListener('click', function() {
+                // Redirect to Angular
+                window.location.href = 'http://localhost:4200/getstarted';
             });
         }
     </script>

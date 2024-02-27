@@ -1,46 +1,12 @@
-<main>
-<form [formGroup]="form" (ngSubmit)="onSubmit()">
-  <div class="mb-4">
-    <label class="block text-lg font-medium">Tell us your Property type(House/Bungalow/Corporate)</label>
-    <input formControlName="Tell us your Property type(House/Bungalow/Corporate)" type="text" class="form-input"/>
-  </div>
-  <div class="mb-4">
-    <label class="block text-lg font-medium">Length of your PLOT</label>
-    <input formControlName="Length of your PLOT" type="text" class="form-input"/>
-  </div>
+<main class="w-full">
 
-<div class="mb-4">
-    <label class="block text-lg font-medium">Breadth of your PLOT</label>
-    <input formControlName="Breadth of your PLOT" type="text" class="form-input"/>
-  </div>
-
-<div class="mb-4">
-    <label class="block text-lg font-medium">Do you have any Direction preference?</label>
-    <input formControlName="Do you have any Direction preference?" type="text" class="form-input"/>
-  </div>
-
-<div class="mb-4">
-    <label class="block text-lg font-medium">How many Bedrooms do you want?</label>
-    <input formControlName="How many Bedrooms do you want?" type="text" class="form-input"/>
-  </div>
-
-<div class="mb-4">
-    <label class="block text-lg font-medium">Medium sized OR Large sized</label>
-    <input formControlName="Medium sized OR Large sized" type="text" class="form-input"/>
-  </div>
-  
-
-  <!-- Add more form controls as needed -->
-
-  <button type="submit" class="bg-blue-500 text-white p-2 rounded-md">Submit</button>
-</form>
-<div class="max-w-md mx-auto text-black bg-white p-8 rounded shadow-md">
+<div class="w-full mx-auto text-black bg-[#E2DDFE] p-8 rounded shadow-md">
     
   <form>
       <!-- Question 1: What are you looking for? -->
       <div class="mb-4">
           <label class="block text-gray-700 text-sm font-bold mb-2" for="propertyType">What are you looking for?</label>
-          <select class="w-full border p-2 rounded" id="propertyType" name="propertyType">
+          <select class="w-full border p-2 rounded " id="propertyType" name="propertyType">
               <option value="house">House</option>
               <option value="bungalow">Bungalow</option>
               <option value="corporate">Corporate</option>
@@ -50,7 +16,7 @@
       <!-- Question 2: How many sides does your PLOT has? -->
       <div class="mb-4">
           <label class="block text-gray-700 text-sm font-bold mb-2" for="plotSides">How many sides does your PLOT has?</label>
-          <input class="w-full border p-2 rounded" type="number" id="plotSides" name="plotSides">
+          <input class="w-full border p-2 rounded " type="number" id="plotSides" name="plotSides">
       </div>
 
       <!-- Question 3: Choose your scale type... -->
@@ -86,10 +52,10 @@
       <!-- Question 6: Things you wish to include -->
       <div class="mb-4">
           <label class="block text-gray-700 text-sm font-bold mb-2">Things you wish to include</label>
-          <div class="grid grid-cols-2 gap-4">
+          <div class="grid grid-cols-2">
               <!-- Replace 'quantity' with an appropriate id if needed -->
-              <input type="checkbox" id="meetingHall" name="meetingHall" class="mr-2">
-              <label for="meetingHall">Meeting hall</label>
+              <input type="checkbox" id="meetingHall" name="meetingHall" class=" w-1">
+              <label for="meetingHall" class=" w-1" >Meeting hall</label>
               
               <!-- Add similar lines for other options -->
           </div>

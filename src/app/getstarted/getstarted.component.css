@@ -1,0 +1,10 @@
+.vertical-line {
+      border: none;
+      border-left: 1px solid slategray; /* You can change the color and style as needed */
+      height: 100px; /* Adjust the height as needed */
+      /* transform: rotate(90deg); */
+      margin-top: 16px;
+      margin-bottom: 4px;
+      margin-left: 20px;
+
+    }
