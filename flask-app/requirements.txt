@@ -1,5 +1,0 @@
-Flask==2.0.2
-shapely==1.8.0
-numpy==1.21.2
-matplotlib==3.4.3
-geopy==2.2.0

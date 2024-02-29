@@ -4,23 +4,186 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Draw Polygon and Generate Grid</title>
+    <link rel="stylesheet" href="./static/style.css"/>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.css" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
     <style>
         #map {
             height: 600px;
-            width: 100%;
+            width: 90%;
+            margin-left:auto;
+            margin-right:auto;
+            border: 4px solid black;
+            border-radius: 16px;
         }
         button {
             margin-top: 10px;
         }
+body{
+  margin:0;
+  background-color: rgb(27 21 37);
+  overflow-x:hidden;
+
+}
+
+/* Reset styles for anchor tag */
+a {
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Reset styles for unordered list */
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Reset styles for list item */
+li {
+  margin: 0;
+  padding: 0;
+}
+
+        div.navbar {
+          display: flex;
+          z-index: 10;
+          background-color: rgb(27 21 37);
+          width: 100vw;
+          height: var(--tw-size-11);
+          justify-content: space-between;
+          position: -webkit-sticky;
+          position: sticky;
+         
+          border-bottom-width: 1px;
+          
+        }
+        
+        div.navbar > h1 {
+          --tw-text-opacity: 1;
+          color: rgb(186 167 255);
+          padding: var(--tw-size-2);
+          margin-left: 16px;
+          margin-right: var(--tw-size-4);
+          font-family: var(--tw-font-family-mono);
+          font-size: var(--tw-font-size-xl);
+          line-height: var(--tw-line-height-7);
+          -webkit-font-smoothing: auto;
+          -moz-osx-font-smoothing: auto;
+          letter-spacing: 0.1em;
+        }
+        
+        div.navbar > section > ul {
+          display: flex;
+          cursor: pointer;
+      
+        }
+        
+        div.navbar > section > ul > li.navbar__unique1 {
+          height: -webkit-fit-content;
+          height: -moz-fit-content;
+          height: fit-content;
+          margin-top: var(--tw-size-2);
+          margin-right: var(--tw-size-7);
+          
+        }
+        
+        div.navbar > section > ul > li > a.navbar__unique3:hover {
+          --tw-text-opacity: 1;
+          color: rgb(125 102 217);
+    
+        }
+        
+        div.navbar > section > ul > li.navbar__unique2 {
+          height: -webkit-fit-content;
+          height: -moz-fit-content;
+          height: fit-content;
+          margin-top: var(--tw-size-2);
+          margin-right: var(--tw-size-7);
+          
+        }
+        
+        div.navbar > section > ul > li.navbar__unique2:hover {
+          --tw-text-opacity: 1;
+          color: rgb(125 102 217);
+      
+        }
+        
+        div.navbar > section > ul > li.navbar__unique5 {
+          height: -webkit-fit-content;
+          height: -moz-fit-content;
+          height: fit-content;
+          margin-top: var(--tw-size-2);
+          margin-right: var(--tw-size-7);
+  
+        }
+        
+        div.navbar > section > ul > li.navbar__unique5:hover {
+          --tw-text-opacity: 1;
+          color: rgb(125 102 217);
+         
+        }
+
+        button.btn {
+          display: flex;
+          --tw-bg-opacity: 1;
+          background-color: rgb(125 102 217 / var(--tw-bg-opacity));
+          margin: var(--tw-size-4);
+          padding-top: var(--tw-size-2);
+          padding-bottom: var(--tw-size-2);
+          width: var(--tw-size-52);
+          height: var(--tw-size-12);
+          font-size: var(--tw-font-size-lg);
+          line-height: var(--tw-line-height-7);
+          margin-top: var(--tw-size-8);
+          font-weight: var(--tw-font-weight-medium);
+          margin-left: var(--tw-size-6);
+          border-radius: var(--tw-border-radius-lg);
+          align-items: center;
+          align-self: center;
+          justify-content: center;
+          -moz-column-gap: var(--tw-size-2);
+          column-gap: var(--tw-size-2);
+        }
+        
+        button.btn:hover {
+          --tw-bg-opacity: 1;
+          background-color: rgb(105 88 173 / var(--tw-bg-opacity));
+        }
+        
+        button.btn {
+          transition-property: all;
+          transition-duration: 300ms;
+          transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        #btn_arrange{
+          display:flex;
+          flex-direction:col;
+          width:100%;
+          justify-content:space-between;
+          
+        }
     </style>
 </head>
 <body>
+  <div class="navbar">
+    <h1>PixelPlanner</h1>
+    
+  </div>
+
+    
     <div id="map"></div>
-    <button id="enterButton">Enter</button>
-    <button id="redirectToAngularButton">Redirect to Angular</button>
+    <div id="btn_arrange">
+    <button id="enterButton" class="btn">Save</button>
+    <button id="redirectToAngularButton" class="btn">Proceed</button>
+    </div>
 
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.js"></script>
@@ -29,7 +192,7 @@
     <script>
         // Check if running in a browser environment
         if (typeof window !== 'undefined') {
-            var map = L.map('map').setView([51.505, -0.09], 13);
+            var map = L.map('map').setView([19.08, 72.88], 13);
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             }).addTo(map);
@@ -73,7 +236,7 @@
                 
 
                 // Send data to the backend
-                fetch('/generate_grid', {
+                fetch('/generate_req', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -94,5 +257,7 @@
             });
         }
     </script>
+
+    
 </body>
 </html>

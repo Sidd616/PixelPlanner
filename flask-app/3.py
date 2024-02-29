@@ -55,9 +55,9 @@ def plot_polygon_with_properties(polygon, side_dimensions):
 
     return image_path
 
-# Route to generate grid
-@app.route('/generate_grid', methods=['POST'])
-def generate_grid():
+# Route to generate req
+@app.route('/generate_req', methods=['POST'])
+def generate_req():
     data = request.json
     shapes = data.get('shapes', [])
 
@@ -69,6 +69,22 @@ def generate_grid():
 
     image_path = plot_polygon_with_properties(polygon_coordinates, side_dimensions)
 
+    # Update config.json to set "modified" to true
+    config_path = os.path.join(app.static_folder, 'config.json')
+    with open(config_path, 'r') as config_file:
+        config_data = json.load(config_file)
+        config_data['modified'] = True
+
+    with open(config_path, 'w') as config_file:
+        json.dump(config_data, config_file)
+
+    return jsonify({'success': True, 'image_path': image_path, 'modified': False})
+
+# Route to generate grid
+@app.route('/generate_grid', methods=['POST'])
+def generate_grid():
+    data = request.json
+
     # Update config.json to set "modified" to false
     config_path = os.path.join(app.static_folder, 'config.json')
     with open(config_path, 'r') as config_file:
@@ -78,7 +94,7 @@ def generate_grid():
     with open(config_path, 'w') as config_file:
         json.dump(config_data, config_file)
 
-    return jsonify({'success': True, 'image_path': image_path, 'modified': False})
+    return jsonify({'success': True, 'modified': False})
 
 
 # Route to serve HTML
