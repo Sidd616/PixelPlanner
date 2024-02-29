@@ -1,4 +1,3 @@
-```markdown
 # PixelPlanner: AI-Generated Floor Plans
 
 Welcome to PixelPlanner, a project that leverages AI to generate floor plans for your spaces. This README provides instructions on how to set up and run the project locally.
@@ -45,6 +44,3 @@ This will launch the project, and you can view it by navigating to [http://local
 ### Stopping the Server
 
 To stop the development server, use `CTRL+C` in the terminal where the server is running.
-
-
-```
