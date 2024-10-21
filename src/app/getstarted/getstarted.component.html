@@ -2,17 +2,17 @@
       <h1 class="text-4xl font-semibold tracking-tight font-sans p-6 px-12">Let's start🚀</h1>
       <p class="text-slate-400 ml-16 w-2/3 mr-8">Unlock the potential of architectural design effortlessly with PixelPlanner's simplified questionnaire-based approach. Tailor spaces seamlessly, from homes to corporate offices, by providing inputs for personalized 3D models.</p>
       <hr class="my-6 mx-7 border-[#291F43]">
-      <div class="flex justify-center w-9/12">
+      <div class="flex justify-center">
         <app-form-component class="w-full"></app-form-component>
         <!-- <app-map-page></app-map-page> -->
       </div>
     
       <hr class="mx-auto max-w-screen-lg mt-4">
-      <div class="flex w-full justify-center flex-col">
+      <div class="flex w-full justify-center flex-col my-2">
         <div class="flex w-3/6 justify-evenly self-center mx-4">
-          <p class="text-slate-400 my-auto">Use our Latest feature, Plot Selection Using Map <span class=" text-cyan-400 font-extralight">(try now)</span></p>
+          <p class="text-slate-400 my-auto">Use our Latest feature, Plot Selection Using Map <br><span class=" text-cyan-400 font-extralight">(try now)</span></p>
           <hr class="vertical-line">
-          <button class="flex bg-[#7D66D9] m-4 py-2 w-52 h-12 text-lg mt-8 font-medium ml-6 rounded-lg items-center self-center justify-center gap-x-2  hover:bg-[#6958AD]  transition-all duration-300 ease-in-out" (click)="onClickNavigateTo5000()">Use Map</button>
+          <button class="flex bg-[#7D66D9] m-4 w-52 h-12 text-lg font-medium ml-6 rounded-lg items-center self-center justify-center gap-x-2  hover:bg-[#6958AD]  transition-all duration-300 ease-in-out" (click)="onClickNavigateTo5000()">Use Map</button>
 
         </div>
       <div *ngIf="isModified" class="flex w-full mt-10 justify-center flex-col">

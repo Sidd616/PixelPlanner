@@ -1,6 +1,6 @@
 <main class="w-full">
 
-<div class="w-full mx-auto text-black bg-[#E2DDFE] p-8 rounded shadow-md">
+<div class="w-full mx-auto text-black bg-[#E2DDFE] p-8 rounded-xl shadow-md">
     
   <form>
       <!-- Question 1: What are you looking for? -->
@@ -52,13 +52,19 @@
       <!-- Question 6: Things you wish to include -->
       <div class="mb-4">
           <label class="block text-gray-700 text-sm font-bold mb-2">Things you wish to include</label>
-          <div class="grid grid-cols-2">
+    
               <!-- Replace 'quantity' with an appropriate id if needed -->
-              <input type="checkbox" id="meetingHall" name="meetingHall" class=" w-1">
+              <input type="checkbox" id="meetingHall" name="meetingHall" class="mr-2">
               <label for="meetingHall" class=" w-1" >Meeting hall</label>
+              <br>
+              <input type="checkbox" id="play" name="play" class="mr-2">
+              <label for="play" class=" w-1" >Play Area</label>
+              <br>
+              <input type="checkbox" id="store" name="store" class="mr-2">
+              <label for="store" class=" w-1" >Store room</label>
               
               <!-- Add similar lines for other options -->
-          </div>
+         
       </div>
 
       <!-- Question 7: How spacious do you want? -->
@@ -90,7 +96,7 @@
       </div>
 
       <!-- Submit button -->
-      <button type="submit" class="bg-blue-500 text-white p-2 rounded">Submit</button>
+      <button type="submit" class="bg-blue-500 text-white p-2 hover:scale-105 transition-all duration-300 ease-in-out">Submit</button>
   </form>
   
 </div>
